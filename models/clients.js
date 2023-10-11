@@ -8,3 +8,5 @@ const clientSchema = new moongose.Schema({
   city: { type: String, required: true },
   state: { type: String, required: true },
 });
+
+module.exports = moongose.model("Client", clientSchema);

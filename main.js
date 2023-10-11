@@ -28,9 +28,7 @@ app.use((req, res, next) => {
 // Inserindo template engine
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
+app.use("/", require("./routes/routes"));
 
 app.listen(3000, () => {
   console.log("Servidor Ligado!");
