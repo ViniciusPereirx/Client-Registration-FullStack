@@ -28,6 +28,7 @@ app.use((req, res, next) => {
 // Inserindo template engine
 app.set("view engine", "ejs");
 
+// Rotas
 app.use("/", require("./routes/routes"));
 
 app.listen(3000, () => {
