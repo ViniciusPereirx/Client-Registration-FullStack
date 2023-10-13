@@ -5,7 +5,7 @@ const session = require("express-session");
 const app = express();
 
 // Conectando ao MongoDB
-require("./database/db");
+require("./server/database");
 
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
@@ -24,6 +24,8 @@ app.use((req, res, next) => {
   delete req.session.message;
   next();
 });
+
+app.use(express.static("uploads"));
 
 // Inserindo template engine
 app.set("view engine", "ejs");

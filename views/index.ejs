@@ -8,8 +8,25 @@
           Cadastrar Cliente
         </button></a
       >
+
+      <% if (message) { %>
+      <div
+        class="alert alert-dismissible fade show alert-<%= message.type %> mt-2"
+        role="alert"
+      >
+        <button
+          class="btn-close"
+          type="button"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+        <strong><%= message.message %></strong>
+      </div>
+      <% } %>
+
       <div class="table-responsive mt-2">
-        <table class="table table-striped">
+        <% if (clients !='') { %>
+        <table class="table table-striped text-center">
           <thead>
             <tr class="table-secondary text-center">
               <th>Foto</th>
@@ -22,26 +39,40 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="text-center">
-              <td><img src="" alt="" /></td>
-              <td>Vinicius</td>
-              <td>vinicius@gmail.com</td>
-              <td>(35) 997629493</td>
-              <td>Brasópolis</td>
-              <td>MG</td>
+            <% clients.forEach((client) => { %>
+            <tr class="align-middle">
               <td>
-                <a href="" class="text-success"
+                <img
+                  src="<%= client.image %>"
+                  alt="image"
+                  width="50"
+                  class="img-thumbnail"
+                />
+              </td>
+              <td><%= client.name %></td>
+              <td><%= client.email %></td>
+              <td><%= client.phone %></td>
+              <td><%= client.city %></td>
+              <td><%= client.state %></td>
+              <td>
+                <a href="/edit/<%= client._id %>" class="text-success"
                   ><i class="fas fa-edit fa-md mx-1"></i
                 ></a>
-                <a href="" class="text-danger"
+                <a href="/delete/<%= client._id %>" class="text-danger"
                   ><i class="fas fa-trash fa-md mx-1"></i
                 ></a>
               </td>
             </tr>
+            <% }) %>
           </tbody>
         </table>
+        <% } else { %>
+        <h1 class="text-center text-secondary mt-5">
+          Nenhum usuário encontrado!
+        </h1>
+        <% } %>
       </div>
     </div>
   </div>
+  <%- include('layout/footer.ejs') %>
 </div>
-<%- include('layout/footer.ejs') %>
