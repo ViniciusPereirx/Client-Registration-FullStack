@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,200;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      href="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.css"
+      rel="stylesheet"
+    />
+
+    <title><%= title %></title>
+  </head>
+  <body>
+    <header>
+      <h1 class="header-title text-center text-dark p-3 bg-body-secondary">
+        Cadastro de Clientes
+      </h1>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mx-auto mt-2">
+          <div class="card shadow">
+            <div
+              class="card-header d-flex justify-content-between bg-body-secondary"
+            >
+              <h5 class="text-dark">Editando Cliente (<%= client.name %>)</h5>
+              <a href="/"
+                ><input
+                  type="submit"
+                  id="submit"
+                  value="Cancelar"
+                  class="btn btn-danger btn-sm"
+              /></a>
+            </div>
+            <div class="card-body p-4">
+              <form
+                action="/update/<%= client._id %>"
+                method="post"
+                id="add-form"
+                enctype="multipart/form-data"
+              >
+                <div class="mb-3">
+                  <label for="name" class="mt-1">Nome</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-control form-control-md"
+                    placeholder="Informe seu nome"
+                    value="<%= client.name %>"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="mt-1">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control form-control-md"
+                    placeholder="Informe seu Email"
+                    value="<%= client.email %>"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="phone" class="mt-1">Telefone</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="form-control form-control-md"
+                    placeholder="Informe o Telefone"
+                    value="<%= client.phone %>"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="city" class="mt-1">Cidade</label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    class="form-control form-control-md"
+                    placeholder="Informe a Cidade"
+                    value="<%= client.city %>"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="state" class="mt-1">Estado</label>
+                  <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    class="form-control form-control-md"
+                    placeholder="Informe o Estado"
+                    value="<%= client.state %>"
+                    required
+                  />
+                </div>
+                <div
+                  class="mb-3 d-flex justify-content-between align-items-center"
+                >
+                  <label for="image" class="form-label mt-1">Foto</label>
+                  <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    class="form-control form-control-sm"
+                
+                  />
+                  <img
+                    src="/<%= client.image %>"
+                    alt="image"
+                    width="50"
+                    class="img-thumbnail mt-1"
+                  />
+                </div>
+                <input
+                  type="hidden"
+                  name="old_image"
+                  value="<%= client.image %>"
+                />
+                <div class="mb-3">
+                  <input
+                    type="submit"
+                    id="submit"
+                    value="Atualizar"
+                    class="btn btn-primary btn-sm"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer text-center mb-2 fixed-bottom">
+      Copyright &copy; Vinicius Pereira
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      $(document).ready(() => {
+        $("table").DataTable({
+          order: [0, "desc"],
+        });
+      });
+    </script>
+  </body>
+</html>
