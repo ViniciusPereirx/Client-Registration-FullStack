@@ -115,7 +115,7 @@ router.get("/update/:id", upload, (req, res) => {
 });
 
 // Deletar Cliente
-router.delete("/delete/:id", (req, res) => {
+router.get("/delete/:id", (req, res) => {
   const id = req.params.id;
 
   Client.findByIdAndRemove(id)
